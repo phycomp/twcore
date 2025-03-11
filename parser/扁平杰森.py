@@ -1,3 +1,15 @@
+def 巢狀(paths):
+    巢典 = {}
+    for path in paths:
+        keys = path.split('.')
+        current_level = 巢典
+        for key in keys[:-1]:  # 遍歷中間層
+            if not isinstance(current_level.get(key), dict):
+                current_level[key] = {}
+            current_level = current_level[key]
+        current_level[keys[-1]] = None  # 最后一層設置為 None
+    return 巢典
+
 def 展普(obj, level=0):
   indent = "  " * level  # 用於格式化輸出層級
   if isinstance(obj, dict):
